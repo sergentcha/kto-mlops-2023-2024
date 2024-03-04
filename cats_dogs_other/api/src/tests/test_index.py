@@ -17,3 +17,11 @@ class TestIndex(unittest.TestCase):
             response = client.post("/upload", files={"file": ("filename", file, "image/png")})
             self.assertEqual(response.status_code, 200)
             self.assertEqual(response.json()['prediction'], 'Cat')
+    
+
+    def skip_oauth():
+        return {}
+
+
+    index.skip_oidc = True
+    index.app.dependency_overrides[index.oauth2_scheme] = skip_oauth
